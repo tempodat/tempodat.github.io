@@ -1,0 +1,14 @@
+name: Dispatch to website
+
+on: push
+
+jobs:
+  dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send repository_dispatch
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          token: ${{ secrets.PAT }}                    # a PAT with repo access
+          repository: tempodat/tempodat.github.io
+          event-type: scipmap-updated
