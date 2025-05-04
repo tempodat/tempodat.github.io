@@ -1,0 +1,3 @@
+[submodule "scipmap"]
+	path = scipmap
+	url = https://github.com/tempodat/scipmap.git
