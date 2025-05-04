@@ -16,7 +16,7 @@ jobs:
           fetch-depth: 0           # needed for subtree merges
 
       - name: Add scipmap remote
-        run: git remote add scipmap https://github.com/your-user/scipmap.git
+        run: git remote add scipmap https://github.com/tempodat/scipmap.git
 
       - name: Pull latest scipmap
         run: |
