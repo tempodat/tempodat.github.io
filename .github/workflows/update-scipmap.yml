@@ -26,8 +26,7 @@ jobs:
       - name: Push if changed
         run: |
           if ! git diff --quiet; then
-            git push origin HEAD:main
+            git push origin HEAD:master
           else
             echo "No changes in scipmap."
           fi
-
