@@ -1,0 +1,33 @@
+name: Update scipmap subtree
+
+# Trigger via repository_dispatch or manual
+on:
+  repository_dispatch:
+    types: [scipmap-updated]
+  workflow_dispatch: {}
+
+jobs:
+  sync-subtree:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0           # needed for subtree merges
+
+      - name: Add scipmap remote
+        run: git remote add scipmap https://github.com/your-user/scipmap.git
+
+      - name: Pull latest scipmap
+        run: |
+          git fetch scipmap main
+          git subtree pull --prefix=scipmap scipmap main --squash
+
+      - name: Push if changed
+        run: |
+          if ! git diff --quiet; then
+            git push origin HEAD:main
+          else
+            echo "No changes in scipmap."
+          fi
+
